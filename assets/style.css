@@ -188,6 +188,11 @@ p{ margin: 0 0 1em; color: var(--text-dim); max-width: 62ch; }
   padding-block: clamp(90px, 16vw, 170px) clamp(70px, 12vw, 130px);
 }
 .hero .container{ position:relative; z-index:2; }
+.hero.has-photo{
+  background:
+    linear-gradient(180deg, rgba(22,33,62,0.86) 0%, rgba(22,33,62,0.62) 45%, rgba(22,33,62,0.95) 100%),
+    url("img/hero-event.jpg") center 32% / cover no-repeat;
+}
 .hero-eyebrow{
   font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold-soft); margin-bottom: 22px; display:block;
@@ -365,11 +370,14 @@ section{ padding-block: clamp(64px, 9vw, 120px); }
 }
 @media (max-width: 900px){ .contact-wrap{ grid-template-columns:1fr; } }
 
-.contact-info-item{ display:flex; gap:18px; padding-block: 20px; border-top: 1px solid rgba(246,241,231,0.18); }
+.contact-info-item{ display:flex; gap:18px; padding-block: 20px; border-top: 1px solid rgba(246,241,231,0.18); color: inherit; transition: transform .3s ease; }
 .contact-info-item:last-of-type{ border-bottom: 1px solid rgba(246,241,231,0.18); }
+a.contact-info-item:hover{ transform: translateX(4px); }
+a.contact-info-item:hover .ico{ background: var(--gold); color: var(--ink); }
 .contact-info-item .ico{
   width:44px; height:44px; border:1px solid var(--gold); border-radius:50%;
   display:flex; align-items:center; justify-content:center; flex-shrink:0; color: var(--gold-soft);
+  transition: background .3s ease, color .3s ease;
 }
 .contact-info-item h4{ color: var(--ivory); margin-bottom:4px; font-size:1.05rem; }
 .contact-info-item p{ margin:0; color: rgba(246,241,231,0.68); font-size:0.94rem; }
