@@ -185,12 +185,15 @@ p{ margin: 0 0 1em; color: var(--text-dim); max-width: 62ch; }
   background: var(--ink);
   color: var(--ivory);
   overflow:hidden;
-  padding-block: clamp(90px, 16vw, 170px) clamp(70px, 12vw, 130px);
+  display:flex;
+  align-items:center;
+  min-height: min(86vh, 800px);
+  padding-block: clamp(120px, 14vw, 170px) clamp(60px, 8vw, 100px);
 }
-.hero .container{ position:relative; z-index:2; }
+.hero .container{ position:relative; z-index:2; width:100%; text-align:center; }
 .hero.has-photo{
   background:
-    linear-gradient(180deg, rgba(22,33,62,0.74) 0%, rgba(22,33,62,0.42) 45%, rgba(22,33,62,0.94) 100%),
+    linear-gradient(180deg, rgba(22,33,62,0.78) 0%, rgba(22,33,62,0.5) 42%, rgba(22,33,62,0.95) 100%),
     url("img/hero-event.jpg") center 40% / cover no-repeat;
   background-attachment: scroll;
 }
@@ -203,12 +206,15 @@ p{ margin: 0 0 1em; color: var(--text-dim); max-width: 62ch; }
   font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold-soft); margin-bottom: 22px; display:block;
 }
-.hero h1{ color: var(--ivory); max-width: 15ch; }
-.hero.has-photo h1, .hero.has-photo .hero-lede, .hero.has-photo .hero-eyebrow{ text-shadow: 0 2px 18px rgba(0,0,0,0.45); }
+.hero h1{ color: var(--ivory); max-width: 19ch; margin-inline:auto; }
+.hero.has-photo h1, .hero.has-photo .hero-lede, .hero.has-photo .hero-eyebrow{ text-shadow: 0 2px 20px rgba(0,0,0,0.55); }
 .hero h1 em{ font-style: italic; color: var(--gold-soft); }
-.hero-lede{ color: rgba(246,241,231,0.78); font-size: 1.15rem; max-width: 46ch; margin-top: 18px; }
-.hero-actions{ display:flex; gap:18px; margin-top: 40px; flex-wrap:wrap; }
-.hero .arkmark{ top: -10%; right: -6%; width: min(58vw, 620px); height: min(58vw, 620px); }
+.hero-lede{ color: rgba(246,241,231,0.82); font-size: 1.15rem; max-width: 46ch; margin: 18px auto 0; }
+.hero-actions{ display:flex; gap:18px; margin-top: 40px; flex-wrap:wrap; justify-content:center; }
+.hero .arkmark{ top: -12%; right: -8%; width: min(56vw, 600px); height: min(56vw, 600px); opacity:0.35; }
+@media (max-width: 640px){
+  .hero{ min-height: min(92vh, 680px); }
+}
 
 /* ---------- bandes / sections ---------- */
 section{ padding-block: clamp(64px, 9vw, 120px); }
