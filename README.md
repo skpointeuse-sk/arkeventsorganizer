@@ -64,6 +64,29 @@ Cette version corrige tous les chemins pour qu'ils correspondent exactement à l
 - **WhatsApp** : une icône WhatsApp a été ajoutée (pied de page et page contact), reliée au numéro 06 78 03 00 66 avec un message pré-rempli, elle ouvre directement la conversation WhatsApp.
 - **Téléphone réel** : le numéro 06 78 03 00 66 remplace "Sur demande" sur la page contact, avec un lien d'appel direct sur mobile.
 
+## Dernières retouches (vraies photos, réseaux, effets premium)
+
+- **Les carrés marron ont été remplacés par de vraies photos.** Répartition des photos que tu as fournies :
+  - Fond de l'accueil : terrasse au coucher du soleil (`terrace-sunset.jpg`) — chaleureux, universel.
+  - Bloc "À propos" de l'accueil : table de mariage avec bougies et fleurs (`wedding-table.jpg`) — intime.
+  - Bloc "Pourquoi ARK Events" de l'accueil : grand événement avec éclairage scénique (`concert-crowd.jpg`) — montre la capacité à gérer de grands événements.
+  - Fond de la page À propos : allée de cérémonie avec vue sur les collines (`ceremony-aisle.jpg`) — différent du visuel de l'accueil, pour éviter la répétition que tu avais repérée.
+  - Bloc "Mon histoire" de la page À propos : salle de séminaire avec éclairage bleu (`conference-hall.jpg`) — montre que l'agence gère aussi bien mariages que corporate.
+  - Les pages Services, Nos atouts et Contact restent volontairement sans photo (fond marine + motif doré), pour garder un rythme visuel varié sur le site plutôt que des photos partout.
+- **Si l'image de fond de l'accueil ne s'affiche toujours pas après ce remplacement**, vérifie dans GitHub que le dossier `assets/img/` contient bien tous les fichiers listés ci-dessus : sur GitHub, l'ajout de fichiers dans un sous-dossier se fait glisser-déposer directement dans ce dossier, il est facile d'en oublier un lors d'un import manuel.
+- **Réseaux sociaux** : Facebook a été retiré, Instagram pointe maintenant vers votre vrai compte.
+- **Contact** : le numéro de téléphone affiché a été retiré, seul WhatsApp reste comme canal direct (avec message pré-rempli), en plus de l'e-mail.
+- **Petites étoiles animées** : 9 petites étoiles dorées scintillantes sont réparties sur les pages (légères, non intrusives, se figent automatiquement si la personne a activé la réduction des animations dans son système).
+- **Rotation lente du motif doré** : le motif d'arcs et d'éclat en fond des sections d'en-tête tourne très lentement en continu, pour un effet "spot de gala" discret.
+- **Touche 3D légère** : les icônes des services et des atouts s'inclinent légèrement au survol de la souris, pour un rendu plus premium.
+
+## Quelques conseils pour aller plus loin
+
+- Une page "Réalisations" ou "Galerie" avec de vraies photos d'événements passés de ta cliente (avec l'accord de ses propres clients) renforcerait beaucoup la confiance, plus encore que des photos génériques.
+- De vrais témoignages signés (prénom, type d'événement) sont bien plus convaincants qu'une citation anonyme comme celle utilisée actuellement.
+- Une photo de la fondatrice elle-même sur la page À propos humanise énormément ce type de site "je/moi".
+- Si le volume de demandes augmente, pense à un vrai numéro professionnel dédié plutôt qu'un numéro personnel, pour séparer vie pro et perso.
+
 ## Ce qui a été amélioré par rapport à la version Lovable
 
 - Passage d'une page unique à un site en 5 pages distinctes (Accueil, À propos, Services, Nos atouts, Contact), meilleur pour le référencement et la navigation.
