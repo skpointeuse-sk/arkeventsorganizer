@@ -36,31 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
-  /* --- tilt 3D premium sur les photos (uniquement souris, pas tactile) --- */
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finePointer = window.matchMedia("(pointer: fine)").matches;
-
-  if (finePointer && !reduceMotion) {
-    document.querySelectorAll(".panel").forEach((panel) => {
-      let raf = null;
-      panel.addEventListener("mousemove", (e) => {
-        const rect = panel.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width - 0.5;
-        const py = (e.clientY - rect.top) / rect.height - 0.5;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          panel.style.transform =
-            `perspective(1000px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg) translateZ(8px)`;
-        });
-      });
-      panel.addEventListener("mouseleave", () => {
-        if (raf) cancelAnimationFrame(raf);
-        panel.style.transform = "";
-      });
-    });
-  }
-
   /* --- parallax léger sur les photos de fond des héros --- */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const parallaxEls = document.querySelectorAll(".hero.has-photo, .page-hero.has-photo");
   if (parallaxEls.length && !reduceMotion) {
     let ticking = false;
