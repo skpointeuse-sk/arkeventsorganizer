@@ -190,8 +190,9 @@ p{ margin: 0 0 1em; color: var(--text-dim); max-width: 62ch; }
 .hero .container{ position:relative; z-index:2; }
 .hero.has-photo{
   background:
-    linear-gradient(180deg, rgba(22,33,62,0.86) 0%, rgba(22,33,62,0.6) 45%, rgba(22,33,62,0.95) 100%),
-    url("img/terrace-sunset.jpg") center 42% / cover no-repeat;
+    linear-gradient(180deg, rgba(22,33,62,0.82) 0%, rgba(22,33,62,0.5) 45%, rgba(22,33,62,0.96) 100%),
+    url("img/wedding-table.jpg") center 38% / cover no-repeat;
+  background-attachment: scroll;
 }
 .page-hero.has-photo{
   background:
@@ -238,7 +239,7 @@ section{ padding-block: clamp(64px, 9vw, 120px); }
   gap: clamp(32px, 6vw, 80px);
   align-items:center;
 }
-.split.reverse{ grid-template-columns: 0.86fr 1fr; }
+.split.reverse{ grid-template-columns: 1.05fr 0.95fr; }
 .split.reverse .split-media{ order:-1; }
 @media (max-width: 860px){
   .split, .split.reverse{ grid-template-columns: 1fr; }
@@ -251,30 +252,68 @@ section{ padding-block: clamp(64px, 9vw, 120px); }
 .stat .label{ font-size: 0.82rem; color: var(--text-dim); margin-top:6px; letter-spacing:0.03em; }
 .band-ink .stat .label{ color: rgba(246,241,231,0.65); }
 
-/* ---------- media / panneau photo ---------- */
+/* ---------- media / panneau photo (cadre premium, sans carré ni liseré) ---------- */
+.panel-wrap{
+  position:relative;
+  perspective: 1200px;
+}
+.panel-wrap::before{
+  content:"";
+  position:absolute;
+  inset: -14px;
+  border: 1px solid var(--line);
+  z-index:0;
+  pointer-events:none;
+  transition: inset .5s ease, border-color .5s ease;
+}
+.panel-wrap:hover::before{ inset: -20px; border-color: rgba(182,137,46,0.6); }
+
 .panel{
   position:relative;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius);
+  aspect-ratio: 3/4;
+  border-radius: 0;
   background: linear-gradient(155deg, #C7B29B 0%, #A9927F 46%, #8B7360 100%);
   overflow:hidden;
   display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 30px 60px -30px rgba(22,33,62,0.45);
+  box-shadow: 0 40px 70px -34px rgba(22,33,62,0.5), 0 6px 18px -8px rgba(22,33,62,0.3);
+  will-change: transform;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+  transform-style: preserve-3d;
+  z-index:1;
 }
 .panel img{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  transition: transform 0.8s ease;
+  transition: transform 1s ease;
 }
-.panel:hover img{ transform: scale(1.04); }
+.panel:hover img{ transform: scale(1.055); }
 .panel .arkmark{ width:78%; height:78%; opacity:0.85; }
+
+/* coins dorés type "galerie", au lieu du liseré blanc plein */
+.panel::before,
 .panel::after{
   content:"";
-  position:absolute; inset: 16px;
-  border: 1px solid rgba(246,241,231,0.55);
+  position:absolute;
+  width: 30px; height: 30px;
+  border-color: var(--gold-soft);
+  border-style: solid;
+  border-width: 0;
   pointer-events:none;
   z-index:2;
+  opacity: .9;
 }
-.panel.short{ aspect-ratio: 16/10; }
+.panel::before{
+  top: 14px; left: 14px;
+  border-top-width: 1.5px; border-left-width: 1.5px;
+}
+.panel::after{
+  bottom: 14px; right: 14px;
+  border-bottom-width: 1.5px; border-right-width: 1.5px;
+}
+.panel.short{ aspect-ratio: 4/3; }
+@media (max-width: 640px){
+  .panel{ aspect-ratio: 4/5; }
+  .panel.short{ aspect-ratio: 16/11; }
+}
 
 /* ---------- listes de services ---------- */
 .service-list{ display:flex; flex-direction:column; }
@@ -444,9 +483,10 @@ form.devis .full{ grid-column: 1 / -1; }
   pointer-events: none;
   z-index: 3;
   animation: twinkle 3.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(216,185,120,0.55));
 }
 .spark svg{ display:block; width:100%; height:100%; }
-.band-ivory .spark, .band-dim .spark{ color: var(--gold); opacity:0.55; }
+.band-ivory .spark, .band-dim .spark{ color: var(--gold); opacity:0.55; filter: drop-shadow(0 0 5px rgba(182,137,46,0.35)); }
 @keyframes twinkle{
   0%, 100%{ transform: scale(0.55) rotate(0deg); opacity: 0.2; }
   50%{ transform: scale(1) rotate(12deg); opacity: 0.9; }
