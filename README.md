@@ -51,6 +51,19 @@ Si tu préfères une solution avec un vrai backend (ex. fonction serverless Verc
 - **Logo** : remplace `images/logo.png` par une version plus haute définition si besoin, le format carré est conservé automatiquement.
 - **Photos** : le site utilise actuellement une mise en page 100 % graphique (sans photo) pour rester léger et cohérent quelle que soit la place disponible. Pour intégrer de vraies photos d'événements, remplace les blocs `<div class="panel">...</div>` par des balises `<img>` : la mise en forme (ombre, cadre doré) s'adaptera automatiquement à condition de garder la classe `panel`.
 
+## Pourquoi le site s'affichait sans style sur Vercel
+
+En important les fichiers sur GitHub, le dossier a été réorganisé : les fichiers `css/style.css`, `images/logo.png` et `js/script.js` du départ sont devenus `assets/style.css`, `assets/img/logo.png` et `script.js`. Or les pages HTML pointaient encore vers les anciens chemins, donc le navigateur ne trouvait plus la feuille de style ni les images : le site s'affichait en texte brut, sans mise en forme.
+
+Cette version corrige tous les chemins pour qu'ils correspondent exactement à la structure actuelle de ton dépôt GitHub (`assets/style.css`, `assets/img/logo.png`, `script.js` à la racine). Il suffit de remplacer les fichiers du dépôt par ceux de ce zip pour que tout s'affiche correctement, y compris `vercel.json` qui doit rester à la racine du projet (pas dans `assets/`).
+
+## Nouveautés de cette version
+
+- **Photo d'accueil** : la photo fournie (`assets/img/hero-event.jpg`) est maintenant utilisée en fond de la section d'accueil, avec un voile marine pour garder le texte lisible.
+- **E-mail pré-rempli** : cliquer sur l'icône e-mail (pied de page et page contact) ouvre directement le client mail (Outlook, etc.) avec le destinataire, l'objet et un message déjà rédigés.
+- **WhatsApp** : une icône WhatsApp a été ajoutée (pied de page et page contact), reliée au numéro 06 78 03 00 66 avec un message pré-rempli, elle ouvre directement la conversation WhatsApp.
+- **Téléphone réel** : le numéro 06 78 03 00 66 remplace "Sur demande" sur la page contact, avec un lien d'appel direct sur mobile.
+
 ## Ce qui a été amélioré par rapport à la version Lovable
 
 - Passage d'une page unique à un site en 5 pages distinctes (Accueil, À propos, Services, Nos atouts, Contact), meilleur pour le référencement et la navigation.
