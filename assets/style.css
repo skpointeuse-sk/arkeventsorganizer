@@ -190,8 +190,8 @@ p{ margin: 0 0 1em; color: var(--text-dim); max-width: 62ch; }
 .hero .container{ position:relative; z-index:2; }
 .hero.has-photo{
   background:
-    linear-gradient(180deg, rgba(22,33,62,0.82) 0%, rgba(22,33,62,0.5) 45%, rgba(22,33,62,0.96) 100%),
-    url("img/wedding-table.jpg") center 38% / cover no-repeat;
+    linear-gradient(180deg, rgba(22,33,62,0.74) 0%, rgba(22,33,62,0.42) 45%, rgba(22,33,62,0.94) 100%),
+    url("img/hero-event.jpg") center 40% / cover no-repeat;
   background-attachment: scroll;
 }
 .page-hero.has-photo{
@@ -204,6 +204,7 @@ p{ margin: 0 0 1em; color: var(--text-dim); max-width: 62ch; }
   color: var(--gold-soft); margin-bottom: 22px; display:block;
 }
 .hero h1{ color: var(--ivory); max-width: 15ch; }
+.hero.has-photo h1, .hero.has-photo .hero-lede, .hero.has-photo .hero-eyebrow{ text-shadow: 0 2px 18px rgba(0,0,0,0.45); }
 .hero h1 em{ font-style: italic; color: var(--gold-soft); }
 .hero-lede{ color: rgba(246,241,231,0.78); font-size: 1.15rem; max-width: 46ch; margin-top: 18px; }
 .hero-actions{ display:flex; gap:18px; margin-top: 40px; flex-wrap:wrap; }
@@ -276,9 +277,6 @@ section{ padding-block: clamp(64px, 9vw, 120px); }
   overflow:hidden;
   display:flex; align-items:center; justify-content:center;
   box-shadow: 0 40px 70px -34px rgba(22,33,62,0.5), 0 6px 18px -8px rgba(22,33,62,0.3);
-  will-change: transform;
-  transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
-  transform-style: preserve-3d;
   z-index:1;
 }
 .panel img{
@@ -482,14 +480,35 @@ form.devis .full{ grid-column: 1 / -1; }
   opacity: 0.7;
   pointer-events: none;
   z-index: 3;
-  animation: twinkle 3.2s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(216,185,120,0.55));
+  animation: twinkle 3.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(216,185,120,0.65));
 }
 .spark svg{ display:block; width:100%; height:100%; }
-.band-ivory .spark, .band-dim .spark{ color: var(--gold); opacity:0.55; filter: drop-shadow(0 0 5px rgba(182,137,46,0.35)); }
+.band-ivory .spark, .band-dim .spark{ color: var(--gold); opacity:0.55; filter: drop-shadow(0 0 6px rgba(182,137,46,0.4)); }
 @keyframes twinkle{
   0%, 100%{ transform: scale(0.55) rotate(0deg); opacity: 0.2; }
-  50%{ transform: scale(1) rotate(12deg); opacity: 0.9; }
+  50%{ transform: scale(1.15) rotate(12deg); opacity: 0.95; }
+}
+
+/* ---------- étoile filante (accent galaxie, réservé aux fonds sombres) ---------- */
+.spark.shoot{
+  animation: shoot-fly 6.5s ease-in infinite;
+}
+.spark.shoot::before{
+  content:"";
+  position:absolute;
+  top:50%; right:100%;
+  width: 64px; height:1.5px;
+  background: linear-gradient(90deg, transparent, rgba(216,185,120,0.75));
+  transform: translateY(-50%) rotate(180deg);
+  transform-origin: right center;
+}
+@keyframes shoot-fly{
+  0%{ transform: translate(0,0) scale(0.6) rotate(0deg); opacity: 0; }
+  4%{ opacity: 1; }
+  8%{ transform: translate(20px,13px) scale(1) rotate(0deg); }
+  34%{ transform: translate(140px, 90px) scale(1) rotate(0deg); opacity: 0; }
+  100%{ opacity: 0; transform: translate(0,0) scale(0.6) rotate(0deg); }
 }
 
 /* ---------- rotation lente du motif de marque (arrière-plan animé, léger) ---------- */
