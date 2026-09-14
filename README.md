@@ -64,6 +64,15 @@ Cette version corrige tous les chemins pour qu'ils correspondent exactement à l
 - **WhatsApp** : une icône WhatsApp a été ajoutée (pied de page et page contact), reliée au numéro 06 78 03 00 66 avec un message pré-rempli, elle ouvre directement la conversation WhatsApp.
 - **Téléphone réel** : le numéro 06 78 03 00 66 remplace "Sur demande" sur la page contact, avec un lien d'appel direct sur mobile.
 
+## Dernier correctif (photo mal cadrée + hero invisible)
+
+Deux bugs distincts ont été corrigés dans cette version :
+
+1. **Les photos avaient des bandes noires sur les côtés.** Les images que tu avais fournies contenaient une zone transparente autour de la photo (pour un cadrage vertical). En les convertissant en JPEG, cette transparence s'est transformée en bandes noires au lieu de disparaître. J'ai recadré chaque photo sur sa zone utile avant conversion : les bandes noires ont disparu.
+2. **La photo de fond de l'accueil ne s'affichait pas du tout.** Le fichier était pourtant bien présent sur GitHub (vérifié), donc la cause la plus probable est un **cache du navigateur** : ton navigateur avait gardé en mémoire une ancienne version de `assets/style.css` qui ne contenait pas encore la règle d'affichage de la photo. J'ai ajouté un paramètre de version (`?v=20260915`) à la fin de tous les liens vers `style.css`, `script.js` et les images : cela force le navigateur à retélécharger les fichiers à jour à chaque nouvelle mise à jour du site, sans avoir à vider le cache manuellement. **Après avoir mis en ligne cette version, fais quand même un rafraîchissement forcé une fois (Ctrl+F5 sur PC, Cmd+Maj+R sur Mac) pour être sûr de repartir sur une base propre.**
+
+Par ailleurs, comme demandé : la photo de la section "Une organisation sans prise de tête" est maintenant la terrasse au coucher du soleil (`terrace-sunset.jpg`) à la place du concert. La photo de concert a été replacée en fond de la page Nos atouts, où son cadrage large convient mieux.
+
 ## Dernières retouches (vraies photos, réseaux, effets premium)
 
 - **Les carrés marron ont été remplacés par de vraies photos.** Répartition des photos que tu as fournies :
