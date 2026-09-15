@@ -2,6 +2,9 @@
 // ARK EVENTS ORGANIZER — script partagé
 // =========================================================
 
+const STAR_SVG =
+  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 4.8 1.6 7.8 3.4 9.6C17.2 11.4 20.2 12.4 24 13c-3.8.6-6.8 1.6-9.6 3.4C12.6 18.2 12 20.8 12 24c-.6-4.8-1.6-7.8-3.4-9.6C6.8 12.6 3.8 12 0 11c3.8-.6 6.8-1.6 9.6-3.4C11.4 5.8 12 3.2 12 0Z"/></svg>';
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* --- menu mobile --- */
@@ -16,6 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
       link.addEventListener("click", () => nav.classList.remove("open"));
     });
   }
+
+  /* --- constellation de petites étoiles scintillantes, générées en JS --- */
+  document.querySelectorAll("[data-stars]").forEach((el) => {
+    const count = parseInt(el.dataset.stars, 10) || 0;
+    if (!getComputedStyle(el).position || getComputedStyle(el).position === "static") {
+      el.style.position = "relative";
+    }
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement("span");
+      span.className = "spark";
+      span.setAttribute("aria-hidden", "true");
+      const size = (8 + Math.random() * 11).toFixed(0);
+      const top = (4 + Math.random() * 88).toFixed(1);
+      const left = (3 + Math.random() * 92).toFixed(1);
+      const delay = (Math.random() * 3).toFixed(2);
+      span.style.cssText = `top:${top}%; left:${left}%; width:${size}px; height:${size}px; animation-delay:${delay}s;`;
+      span.innerHTML = STAR_SVG;
+      el.appendChild(span);
+    }
+  });
 
   /* --- révélation douce au défilement (un seul effet, discret) --- */
   const revealEls = document.querySelectorAll(".reveal");
@@ -36,30 +59,35 @@ document.addEventListener("DOMContentLoaded", () => {
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
-  /* --- parallax léger sur les photos de fond des héros --- */
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const parallaxEls = document.querySelectorAll(".hero.has-photo, .page-hero.has-photo");
-  if (parallaxEls.length && !reduceMotion) {
-    let ticking = false;
-    const updateParallax = () => {
-      parallaxEls.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const offset = Math.max(-40, Math.min(40, rect.top * 0.1));
-        el.style.backgroundPositionY = `calc(38% + ${offset}px)`;
-      });
-      ticking = false;
-    };
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (!ticking) {
-          requestAnimationFrame(updateParallax);
-          ticking = true;
-        }
+  /* --- compteur animé pour les chiffres clés (5+, 100%, ...) --- */
+  const nums = document.querySelectorAll(".stat .num");
+  if ("IntersectionObserver" in window && nums.length) {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const countIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          countIo.unobserve(el);
+          const raw = el.textContent.trim();
+          const match = raw.match(/^(\d+)(.*)$/);
+          if (!match || prefersReduced) return; // laisse "∞" et texte non numérique tels quels
+          const target = parseInt(match[1], 10);
+          const suffix = match[2];
+          const duration = 900;
+          const start = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
       },
-      { passive: true }
+      { threshold: 0.6 }
     );
-    updateParallax();
+    nums.forEach((el) => countIo.observe(el));
   }
 
   /* --- formulaire de contact --- */

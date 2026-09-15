@@ -104,3 +104,15 @@ Par ailleurs, comme demandé : la photo de la section "Une organisation sans pri
 - Formulaire de contact avec validation, message de confirmation et envoi automatique par e-mail.
 - URLs propres (`/contact` plutôt que `/contact.html`) via `vercel.json`.
 - Menu mobile, accessibilité (focus visible, respect de la réduction de mouvement) et mise en page responsive sur tous les écrans.
+
+## Retouches demandées (photo hero, cadre photo, étoiles, JS)
+
+- **Photo du hero restaurée** : c'est de nouveau la photo du bar avec l'arche de fleurs (`hero-event.jpg`), celle du tout premier envoi.
+- **Photos plus grandes et coins arrondis** : les panneaux photo (`panel`) ont maintenant des coins arrondis et prennent plus de place à l'écran, notamment dans la section "Une organisation sans prise de tête" où la colonne photo est désormais plus large que la colonne de texte.
+- **Beaucoup plus d'étoiles** : au lieu de les placer une par une à la main, elles sont maintenant générées automatiquement en JavaScript (voir `script.js`) à chaque chargement de page. Chaque section importante (hero, en-têtes de page, citation, bandeau final) déclare juste un nombre d'étoiles souhaité (`data-stars="4"` par exemple dans le HTML) et le script les répartit aléatoirement. Résultat : beaucoup plus d'étoiles sur l'ensemble du site, réparties différemment à chaque visite.
+- **Un peu plus de JavaScript animé** : les chiffres clés de la page (5+, 100%...) s'animent maintenant en comptant progressivement jusqu'à leur valeur finale lorsqu'ils apparaissent à l'écran, plutôt que de s'afficher d'un coup.
+- **Cache navigateur** : le numéro de version en fin de lien (`?v=...`) a de nouveau été incrémenté, donc un Ctrl+F5 après la mise en ligne n'est même plus nécessaire, mais ça ne coûte rien de le faire une fois.
+
+## Formulaire de contact : est-ce que ta cliente reçoit bien les demandes par e-mail ?
+
+Oui, c'est exactement comme ça que le formulaire est construit : validation, message de confirmation, et envoi automatique par e-mail à chaque soumission. **Mais ça ne fonctionne que si l'étape Formspree du README a été faite** (remplacer `VOTRE_ID_FORMSPREE` dans `contact.html` par l'identifiant fourni par Formspree après création d'un compte gratuit). Si ce n'est pas encore fait, le formulaire affichera un message d'erreur au lieu d'envoyer quoi que ce soit. Pour vérifier rapidement : remplis le formulaire toi-même sur le site en ligne ; si tu reçois bien l'e-mail sur contact@arkeventsorganizer.com (ou sur le compte Formspree que tu as utilisé), c'est en place.
