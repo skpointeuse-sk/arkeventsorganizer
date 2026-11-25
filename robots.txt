@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /merci
+Disallow: /404
+Disallow: /assets/img/*.html
+
+Sitemap: https://www.arkeventsorganizer.com/sitemap.xml
