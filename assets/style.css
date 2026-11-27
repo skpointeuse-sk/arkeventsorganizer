@@ -108,6 +108,7 @@ ul,ol{ margin:0; padding:0; }
 .hero{ position:relative; isolation:isolate; color:var(--ivory); background:var(--ink);
   min-height:calc(100svh - var(--header)); display:flex; align-items:flex-end; }
 .hero-media, .hero-media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:60% 40%; z-index:-2; }
+.hero-media{ overflow:hidden; }
 .hero::after{ content:""; position:absolute; inset:0; z-index:-1;
   background:linear-gradient(90deg, rgba(15,24,48,.94) 0%, rgba(22,33,62,.78) 45%, rgba(22,33,62,.28) 100%),
              linear-gradient(0deg, rgba(15,24,48,.55) 0%, rgba(15,24,48,0) 40%); }
